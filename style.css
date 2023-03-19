@@ -1,0 +1,88 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    color: #fff;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg,#05073a,#dc0606ca);
+    padding: 10px;
+}
+
+.container{
+    max-width: 650px;
+    justify-content: center;
+    height: 80vh;
+    width: 100%;
+    padding: 50px 30px;
+    border-radius: 25px;
+    background: linear-gradient(135deg,#dc0606ca,#05073a);
+   
+}
+.container .titles{
+    justify-content: center;
+}
+.inner-container
+{
+    padding: 20px;
+    justify-content: center;
+    margin-left: 80px;
+}
+
+.card{
+    font-size: 15px;
+    padding: 10px;
+    letter-spacing: 1px;
+    display: inline-grid;
+}
+
+.container .inner-container .card .btn
+{
+    background-color: green;
+    padding: 5px;
+}
+
+.bn31 {
+    background-image: linear-gradient(to right, #006175 0%, #00a950 100%);
+    border-radius: 45px;
+    box-sizing: border-box;
+    color: #ccc;
+    display: block;
+    height: 30px;
+    font-size: 1em;
+    padding: 4px;
+    position: relative;
+    text-decoration: none;
+    width: 5em;
+    z-index: 2;
+    margin-left: 25px;
+    align-items: center;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .bn31:hover {
+    color: #fff;
+  }
+  
+  .bn31 .bn31span {
+    align-items: center;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .bn31:hover .bn31span {
+    background: transparent;
+  }

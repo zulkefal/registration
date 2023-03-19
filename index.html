@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Registration</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet'  href='style.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <div class="alert alert-success alert-dismissible" id="success" style="display:none;">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+    </div>
+        <div id="fupForm" class="container">
+            <h2 style="text-align: center;">Student Registration Form</h2>
+            <br>
+            <div style="margin-left: 110px;" class="titles">
+                <label><input id="gender" name="gender" type="radio" value="Mr">Mr</label>
+                <label><input id="gender" name="gender" type="radio" value="Mrs.">Mrs.</label>
+            </div>
+            <div id="fupForm" class="inner-container">
+                
+                <div class="card">
+                    <span>First Name</span>
+                    <input id="fname" name="fname" type="text" placeholder="Enter First Name">
+                </div>
+    
+                <div class="card">
+                    <span>Last Name</span>
+                    <input id="lname" name="lname" type="text" placeholder="Enter Last Name">
+                </div>
+                <br>
+                <div class="card">
+                <label> Email</label>
+                    <input id="email" name="email" type="text" placeholder="Enter Email">
+                </div>
+             
+                <div class="card">
+                    <span>Password</span>
+                    <input id="pswd" name="pswd" type="pass" placeholder="Enter password">
+                </div>
+                <br>
+                <div class="card">
+                    <span>Birthdate</span>
+                    <input id="bdate" name="bdate" type="date" placeholder="Enter Birthdate">
+                </div>
+                <div style="margin-left: 35px;" class="card">
+                    <span >Your Neighbourhood</span>
+                <select id="neighbour" name="neighbour">
+                    <option>Select</option>
+                    <option value="Kamra">Kamra</option>
+                    <option value="Hazro">Hazro</option>
+                    <option value="Attock">Attock</option>
+                    <option value="Hassan Abdal">Hassan Abdal</option>
+                </select>
+                </div>
+                <br>
+                <h2>Business Info</h2>
+                
+                <div class="card">
+                    <span  >Are you Whole Seller</span>
+                   <select id="sell" name="sell" >
+                     <option>Select</option>
+                     <option value="Yes">Yes</option>
+                     <option value="No">No</option>  
+                   </select>
+                </div>
+                <div class="card">
+                    <span>Business Address</span>
+                    <input id="badd" name="badd" type="text" placeholder="Enter Address">
+                </div>
+                <br>
+                <div class="card">
+                    <span>Your Annual Budget</span>
+                <select id="bud" name="bud">
+                    <option>Select</option>
+                    <option value="10,000-50,000">10,000-50,000</option>
+                    <option  value="50,000-100,000">50,000-100,000</option>
+                    <option value="100,000-1000,000">100,000-1000,000</option>
+                </select>
+               
+                </div>
+                <div class="card">
+                    <span>Select Group:</span>
+                <select id="group" name="group" >
+                    <option>Select</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+                </div>
+                <div class="card">
+                    <br>
+                    <button class="bn31" id="butsave" >Submit</button>
+                </div>
+               
+            </div>
+        
+            <script>
+                $(document).ready(function() {
+                    $('#butsave').on('click', function() {
+                        $("#butsave").attr("disabled", "disabled");
+                        var gender = $('input[name=gender]:checked').val();
+                        var fname=$('#fname').val();
+                        var lname=$('#lname').val();
+                        var email=$('#email').val();
+                        var pswd=$('#pswd').val();
+                        var bdate=$('#bdate').val();
+                        var neighbour=$('select[name=neighbour]').val();
+                        var sell=$('select[name=sell]').val();
+                        var badd=$('#badd').val();
+                        var bud=$('select[name=bud]').val();
+                        var group=$('select[name=group]').val();
+                       
+                        // Check if all required fields are filled
+                        if (fname !== "") {
+                        $.ajax({
+                            url: "save.php",
+                            type: "POST",
+                            data: {
+                            gender: gender,
+                            fname: fname,
+                            lname: lname,
+                            email: email,
+                            pswd: pswd,
+                            bdate: bdate,
+                            neighbour: neighbour,
+                            sell: sell,
+                            badd: badd,
+                            bud: bud,
+                            group: group
+                            },
+                            cache: false,
+                            success: function(dataResult) {
+                            var dataResult = JSON.parse(dataResult);
+    
+                            if (dataResult.statusCode == 200) {
+                                $("#butsave").removeAttr("disabled");
+                                $('#fupForm').find('input:text').val('');
+                                $("#success").show();
+                                alert('Please fill all the fields!');       
+                                } else if (dataResult.statusCode == 201) {
+                                alert("Error occurred!");
+                            }
+                            }
+                        });
+                        } else {
+                        alert('Please fill all the fields!');
+                        }
+                    });
+                    });
+    
+            </script>
+        </div>
+        
+        
+</body>
+</html>
